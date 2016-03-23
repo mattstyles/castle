@@ -1,0 +1,44 @@
+{
+  "name": "castle-client",
+  "version": "0.0.0",
+  "private": true,
+  "description": "CLI client for castle",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf lib && mkdirp lib",
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir lib",
+    "watch": "babel src --out-dir lib --watch",
+    "reload": "supervisor -w lib -n exit -t true -- lib",
+    "start": "( npm run watch & npm run reload )"
+  },
+  "babel": {
+    "presets": [
+      "node5",
+      "react"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
+  },
+  "author": "Matt Styles <matt@veryfizzyjelly.com> (http://github.com/mattstyles)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-plugin-transform-class-properties": "^6.6.0",
+    "babel-preset-node5": "^11.0.0",
+    "babel-preset-react": "^6.5.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.5.2",
+    "supervisor": "^0.9.1"
+  },
+  "dependencies": {
+    "ansi-256-colors": "^1.1.0",
+    "blessed": "^0.1.81",
+    "chalk": "^1.1.1",
+    "react-blessed": "^0.1.7",
+    "rx-lite": "^4.0.8",
+    "socket.io-client": "^1.4.5"
+  }
+}
