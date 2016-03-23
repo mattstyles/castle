@@ -2,16 +2,17 @@
 import Koa from 'koa'
 import Logger from 'koa-bunyan-log'
 import IO from 'koa-socket'
+import logger from 'util/logger'
 
 const app = new Koa()
 const io = new IO()
-const logger = new Logger({
-  name: 'CA'
+const sockerLog = new Logger({
+  name: 'sock'
 })
 
 io.attach( app )
 
-io.use( logger.attach({
+io.use( sockerLog.attach({
   as: 'log'
 }))
 
