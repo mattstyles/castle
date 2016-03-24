@@ -10,11 +10,11 @@ const LOG_ROTATE_MAX = 20
 
 
 // Stop console from doing anything funky
-console.log = function () { }
-console.warn = function () { }
-console.error = function () { }
-console.info = function () { }
-console.debug = function () { }
+// console.log = function () { }
+// console.warn = function () { }
+// console.error = function () { }
+// console.info = function () { }
+// console.debug = function () { }
 
 
 const emitter = new EventEmitter()
