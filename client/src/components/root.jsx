@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react'
+import { Console } from './console'
 
 // Must be stateful for react-blessed to update without recreating everything
 export default class Root extends Component {
@@ -20,9 +21,12 @@ export default class Root extends Component {
     }
 
     return (
-      <box { ...style }>
-        Root Component
-      </box>
+      <element>
+        <box { ...style }>
+          Root Component
+        </box>
+        <Console />
+      </element>
     )
   }
 }
