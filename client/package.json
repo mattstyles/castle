@@ -38,7 +38,7 @@
     "blessed": "^0.1.81",
     "chalk": "^1.1.1",
     "eventemitter3": "^1.2.0",
-    "flux": "^2.1.1",
+    "react": "^0.14.7",
     "react-blessed": "^0.1.7",
     "rx-lite": "^4.0.8",
     "socket.io-client": "^1.4.5"
