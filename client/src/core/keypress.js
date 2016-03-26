@@ -14,12 +14,14 @@ const stream = keypress.pausable( pauser )
 
 
 // Master kill switch, always available
-// ctrl-c || escape
+// ctrl-c
 keypress
-  .filter( event => {
-    return [ 'C-c', 'escape' ]
-      .reduce( ( prev, key ) => event.key.full === key ? true : prev, false )
-  })
+  // Dont use escape as a master, its needed to destroy modals and other popups
+  // .filter( event => {
+  //   return [ 'C-c', 'escape' ]
+  //     .reduce( ( prev, key ) => event.key.full === key ? true : prev, false )
+  // })
+  .filter( event => event.key.full === 'C-c' )
   .subscribe( event => {
     log.info( 'exiting' )
     pauser.onNext( false )
