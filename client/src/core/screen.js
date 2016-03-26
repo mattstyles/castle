@@ -9,6 +9,4 @@ const screen = blessed.screen({
   title: 'Castle'
 })
 
-screen.key( 'escape', () => process.exit( 0 ) )
-
 export default screen

@@ -5,17 +5,21 @@ import screen from './screen'
 import { log } from '../components/console'
 
 
-const stdin = Rx.Observable.fromEvent( screen, 'keypress', ( ch, key ) => {
+const keypress = Rx.Observable.fromEvent( screen, 'keypress', ( ch, key ) => {
   return { ch, key }
 })
 
 const pauser = new Rx.Subject()
-const stream = stdin.pausable( pauser )
+const stream = keypress.pausable( pauser )
 
 
 // Master kill switch, always available
-stdin
-  .filter( event => event.key.ctrl && event.key.name === 'c' )
+// ctrl-c || escape
+keypress
+  .filter( event => {
+    return [ 'C-c', 'escape' ]
+      .reduce( ( prev, key ) => event.key.full === key ? true : prev, false )
+  })
   .subscribe( event => {
     log.info( 'exiting' )
     pauser.onNext( false )
@@ -50,7 +54,7 @@ export function register( callback ) {
 export function grab( callback ) {
   pauser.onNext( false )
 
-  let subscriber = callback( stdin )
+  let subscriber = callback( keypress )
 
   return function dispose() {
     pauser.onNext( true )
